@@ -1,0 +1,33 @@
+{
+  "name": "acme-skills",
+  "owner": {
+    "name": "ACME Platform Team",
+    "email": "platform@example.com"
+  },
+  "metadata": {
+    "description": "사내 스킬·에이전트 카탈로그. 모든 등재는 PR 리뷰를 거친다.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "common",
+      "source": "./plugins/common",
+      "description": "전사 필수 스킬. 사내 문서 규칙과 보안 정책. Required 등급으로 배포되며 제거할 수 없다."
+    },
+    {
+      "name": "platform",
+      "source": "./plugins/platform",
+      "description": "개발 워크플로·인프라 스킬. 코드 리뷰, 배포, 장애 대응."
+    },
+    {
+      "name": "sales",
+      "source": "./plugins/sales",
+      "description": "영업 업무 스킬. 견적서 작성, 제안서 구조화, 고객 문의 정리."
+    },
+    {
+      "name": "finance",
+      "source": "./plugins/finance",
+      "description": "재무 업무 스킬. 비용 정산, 예산 검토, 청구 확인."
+    }
+  ]
+}

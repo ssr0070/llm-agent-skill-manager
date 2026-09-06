@@ -1,0 +1,3 @@
+{"type":"trigger","prompt":"ACME상사에 A-100 모델 50개 견적서 초안 좀 만들어줘","expect":"quote-draft 스킬이 발동한다"}
+{"type":"non-trigger","prompt":"이번 분기 영업 실적 정리해줘","expect":"quote-draft 스킬이 발동하지 않는다"}
+{"type":"edge","prompt":"견적서 양식이 어떻게 생겼는지만 알려줘","expect":"스킬이 발동하되 단가 조회 없이 구조만 설명한다"}

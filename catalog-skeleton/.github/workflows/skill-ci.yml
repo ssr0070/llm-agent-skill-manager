@@ -1,0 +1,49 @@
+name: skill-ci
+
+on:
+  pull_request:
+    paths:
+      - 'plugins/**'
+      - '.claude-plugin/**'
+
+jobs:
+  # 하드 게이트 1 — 구조 린트 + 위험도 판정
+  lint:
+    name: 구조 린트 / 위험도 판정
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 구조 검사
+        run: python3 scripts/lint_structure.py
+      - name: 위험도 판정
+        id: risk
+        run: python3 scripts/lint_structure.py --risk >> "$GITHUB_STEP_SUMMARY"
+
+  # 하드 게이트 2 — 보안 스캔
+  # Phase 2에서 scripts/scan_security.py 를 구현해 활성화한다.
+  security:
+    name: 보안 스캔
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 보안 스캔
+        run: |
+          if [ -f scripts/scan_security.py ]; then
+            python3 scripts/scan_security.py
+          else
+            echo "::notice::보안 스캔 미구현 (Phase 2 예정)"
+          fi
+
+  # 경고 전용 — 머지를 막지 않는다 (FR-303)
+  # eval은 LLM 호출이라 비결정론적이다. 랜덤하게 실패하는 게이트는 곧 우회된다.
+  eval:
+    name: eval (경고)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: eval 실행
+        run: echo "::notice::eval 하네스 미구현 (Phase 2 예정). 결과는 경고로만 게시된다."

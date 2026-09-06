@@ -1,0 +1,26 @@
+# 플러그인 디렉터리 단위로 오너를 강제한다.
+# 오너가 없는 경로는 머지될 수 없다 — "이름 없는 스킬은 죽은 스킬" 문제의 구조적 차단 장치.
+#
+# 관리자 3명 / 3역할 (PRD §6.5)
+#   @eng-owner-a  엔지니어링 오너 A — platform
+#   @eng-owner-b  엔지니어링 오너 B — sales, finance
+#   @security-lead 시큐리티 리드   — common(Required) + 전 스킬의 스크립트·권한 검토
+
+# 기본 — 지정되지 않은 모든 경로
+*                       @eng-owner-a
+
+# 플러그인별 오너
+/plugins/common/        @security-lead
+/plugins/platform/      @eng-owner-a
+/plugins/sales/         @eng-owner-b
+/plugins/finance/       @eng-owner-b
+
+# 카탈로그 정의와 CI — 구조 변경은 플랫폼 오너가 본다
+/.claude-plugin/        @eng-owner-a
+/.github/               @eng-owner-a
+/scripts/               @eng-owner-a @security-lead
+
+# 훅·MCP·실행 파일이 들어오는 경로는 시큐리티 리드가 함께 본다 (SEC-3)
+**/hooks/               @security-lead
+**/.mcp.json            @security-lead
+**/bin/                 @security-lead

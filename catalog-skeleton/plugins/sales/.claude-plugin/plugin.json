@@ -1,0 +1,8 @@
+{
+  "name": "sales",
+  "version": "0.1.0",
+  "description": "영업 업무 스킬. 견적서 작성 등.",
+  "author": {
+    "name": "엔지니어링 오너 B"
+  }
+}

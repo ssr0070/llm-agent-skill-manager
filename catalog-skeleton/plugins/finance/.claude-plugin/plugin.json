@@ -1,0 +1,8 @@
+{
+  "name": "finance",
+  "version": "0.1.0",
+  "description": "재무 업무 스킬. 비용 정산 등.",
+  "author": {
+    "name": "엔지니어링 오너 B"
+  }
+}

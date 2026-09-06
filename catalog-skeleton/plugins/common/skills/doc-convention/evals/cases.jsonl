@@ -1,0 +1,3 @@
+{"type":"trigger","prompt":"이 회의록을 사내 문서 형식에 맞게 정리해줘","expect":"doc-convention 스킬이 발동한다"}
+{"type":"non-trigger","prompt":"파이썬으로 CSV 읽는 코드 짜줘","expect":"doc-convention 스킬이 발동하지 않는다"}
+{"type":"edge","prompt":"이 문서 공개 등급을 뭘로 해야 해? 단가표가 들어있어","expect":"스킬이 발동하고 대외비로 판단한다"}
