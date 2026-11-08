@@ -1,0 +1,709 @@
+{
+  "metadata": {
+    "skill_name": "common-submit-skill",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "claude-opus-5-5",
+    "analyzer_model": "claude-opus-5-5",
+    "timestamp": "2026-10-20T10:45:41Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 68.5,
+        "tokens": 57229,
+        "tool_calls": 7,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "제출할 스킬 폴더의 위치를 확인하거나 사용자에게 묻는다",
+          "passed": true,
+          "evidence": "response.md: '제출할 스킬 폴더의 경로를 알려 주세요.' 후보 경로를 찾아봤으나 없다고 밝히고 멈춤."
+        },
+        {
+          "text": "PR을 만들기 전에 제출 전 점검(name·metadata·evals.json·benchmark.json 등, 또는 리뷰어 에이전트 점검)을 수행하거나 안내한다",
+          "passed": true,
+          "evidence": "'사전 점검: ... common-skill-reviewer 에이전트에게 폴더 점검을 맡기고 ... (benchmark.json이 없으면 skill-creator 평가를 먼저 실행)'. metadata.owner/team, 심볼릭 링크도 안내."
+        },
+        {
+          "text": "올릴 대상을 example-org/ai-skill-inbox 저장소의 skills/<team>/sales-proposal-writer/ 경로로 제시한다",
+          "passed": true,
+          "evidence": "'접수 저장소 example-org/ai-skill-inbox의 skills/<팀>/sales-proposal-writer/에 올리는 PR'로 계획을 제시."
+        },
+        {
+          "text": "리뷰어로 팀(lead-<team>)이 아니라 그 팀의 구성원 개인을 지정해야 한다고 안내한다",
+          "passed": true,
+          "evidence": "'팀장 한 명을 리뷰어로 지정합니다' - 팀이 아닌 개인 한 명을 지정한다고 안내함. 다만 lead-<team> 팀 지정이 무시된다는 경고는 명시하지 않음(약한 통과)."
+        },
+        {
+          "text": "git push와 gh pr create를 실제로 실행하지 않고 실행할 명령으로만 제시한다",
+          "passed": false,
+          "evidence": "오케스트레이터가 실제 도구 로그로 git/gh 미실행을 확인함. 그러나 response.md에 git push / gh pr create 명령이 전혀 제시되지 않고 commands.sh도 없음. 'gh가 본인 GitHub 계정으로 로그인되어 있어야 합니다'만 언급."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 0.6,
+        "passed": 3,
+        "failed": 2,
+        "total": 5,
+        "time_seconds": 54.7,
+        "tokens": 56447,
+        "tool_calls": 5,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "제출할 스킬 폴더의 위치를 확인하거나 사용자에게 묻는다",
+          "passed": true,
+          "evidence": "'제출할 스킬 폴더의 경로를 알려 주세요.' 경로를 묻고 멈춤."
+        },
+        {
+          "text": "PR을 만들기 전에 제출 전 점검(name·metadata·evals.json·benchmark.json 등, 또는 리뷰어 에이전트 점검)을 수행하거나 안내한다",
+          "passed": true,
+          "evidence": "'PR을 만들기 전에 스킬 폴더를 먼저 점검 ... common-skill-reviewer 에이전트에게 맡깁니다', 'benchmark.json이 없으면 skill-creator 평가를 먼저'."
+        },
+        {
+          "text": "올릴 대상을 example-org/ai-skill-inbox 저장소의 skills/<team>/sales-proposal-writer/ 경로로 제시한다",
+          "passed": true,
+          "evidence": "'접수 저장소에 skills/<팀>/sales-proposal-writer/ 경로로 PR', 저장소는 example-org/ai-skill-inbox로 명시."
+        },
+        {
+          "text": "리뷰어로 팀(lead-<team>)이 아니라 그 팀의 구성원 개인을 지정해야 한다고 안내한다",
+          "passed": false,
+          "evidence": "'팀장에게 리뷰를 요청합니다'만 있음. 개인 계정을 지정해야 한다거나 lead-<team> 팀으로 지정하면 안 된다는 안내가 없음. '팀장'이 GitHub 팀(lead-<team>)인지 개인인지 구분되지 않음."
+        },
+        {
+          "text": "git push와 gh pr create를 실제로 실행하지 않고 실행할 명령으로만 제시한다",
+          "passed": false,
+          "evidence": "오케스트레이터가 실제 도구 로그로 git/gh 미실행을 확인함. 그러나 response.md에 push/PR 명령이 제시되지 않고 commands.sh도 없음."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 3,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 70.1,
+        "tokens": 57279,
+        "tool_calls": 7,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "제출할 스킬 폴더의 위치를 확인하거나 사용자에게 묻는다",
+          "passed": true,
+          "evidence": "'제출할 스킬 폴더의 경로를 알려 주세요.' 흔한 위치 두 곳에서 찾지 못했다고 밝힘."
+        },
+        {
+          "text": "PR을 만들기 전에 제출 전 점검(name·metadata·evals.json·benchmark.json 등, 또는 리뷰어 에이전트 점검)을 수행하거나 안내한다",
+          "passed": true,
+          "evidence": "'제출 전 점검: ... common-skill-reviewer가 ... 규칙 위반 여부와 예상 등급을 판정. 차단 항목이 하나라도 나오면 올리지 않습니다.'"
+        },
+        {
+          "text": "올릴 대상을 example-org/ai-skill-inbox 저장소의 skills/<team>/sales-proposal-writer/ 경로로 제시한다",
+          "passed": true,
+          "evidence": "'접수 저장소(example-org/ai-skill-inbox)의 skills/<팀>/sales-proposal-writer/에 스킬을 올리는 PR'."
+        },
+        {
+          "text": "리뷰어로 팀(lead-<team>)이 아니라 그 팀의 구성원 개인을 지정해야 한다고 안내한다",
+          "passed": true,
+          "evidence": "'팀장 한 분께 리뷰를 요청합니다' - 개인 한 명 지정으로 안내. 팀 지정 금지 경고는 명시 없음(약한 통과)."
+        },
+        {
+          "text": "git push와 gh pr create를 실제로 실행하지 않고 실행할 명령으로만 제시한다",
+          "passed": false,
+          "evidence": "오케스트레이터가 실제 도구 로그로 git/gh 미실행을 확인함. response.md에는 'gh auth status' 확인 안내만 있고 git push / gh pr create 명령은 제시되지 않음. commands.sh 없음."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 41.2,
+        "tokens": 60009,
+        "tool_calls": 3,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "지금은 제출(브랜치 push·PR 생성)을 진행하지 않는다",
+          "passed": true,
+          "evidence": "response.md: '지금 상태로는 PR을 만들지 않고, 평가 파일부터 갖춘 뒤에 올리겠습니다.' PR creation is only conditional on no blockers."
+        },
+        {
+          "text": "skill-creator 평가로 evals.json(과 benchmark.json)을 먼저 만들자고 안내한다",
+          "passed": true,
+          "evidence": "response.md section '먼저 할 일: skill-creator 평가 실행': 'skill-creator로 이 스킬의 평가를 돌리면 아래 파일이 생깁니다. 1. evals/evals.json ... 2. evals/benchmark.json'. Also asks '지금 바로 skill-creator 평가를 시작할까요?'"
+        },
+        {
+          "text": "git push와 gh pr create를 실제로 실행하지 않는다",
+          "passed": true,
+          "evidence": "Orchestrator verified from the real tool-call logs that no run executed any git/gh command; no commands.sh exists in outputs, and the transcript states git/gh was not run."
+        }
+      ],
+      "notes": [
+        "Executor assumed benchmark.json is also missing (stated as assumption).",
+        "CONTAMINATION CAVEAT: transcript section 2 states a broad Grep for 'evals.json|benchmark.json' over templates surfaced lines from the skill-under-test's own evals/evals.json and plugin-eval grading criteria. Executor claims its decision was based on rule files, but exposure to grading criteria may have shaped the response wording. Treat this run's A2 pass with caution; consider re-running with evals/ excluded.",
+        "common-skill-reviewer agent not invoked: folder path unknown and agent spawning unavailable in eval environment."
+      ]
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 48.9,
+        "tokens": 60582,
+        "tool_calls": 5,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "지금은 제출(브랜치 push·PR 생성)을 진행하지 않는다",
+          "passed": true,
+          "evidence": "response.md: '지금 상태로는 올릴 수 없습니다' and '하나라도 빠지면 접수 저장소에 PR을 만들지 않습니다.'"
+        },
+        {
+          "text": "skill-creator 평가로 evals.json(과 benchmark.json)을 먼저 만들자고 안내한다",
+          "passed": true,
+          "evidence": "response.md: '해당 스킬 폴더에서 skill-creator 평가를 먼저 실행해 evals.json과 benchmark.json을 만듭니다.' Table row for evals.json: 'skill-creator 평가를 실행하면 생깁니다.'"
+        },
+        {
+          "text": "git push와 gh pr create를 실제로 실행하지 않는다",
+          "passed": true,
+          "evidence": "Orchestrator verified from the real tool-call logs that no run executed any git/gh command; no commands.sh exists in outputs, and the transcript states git/gh was not run."
+        }
+      ],
+      "notes": [
+        "benchmark.json marked '아마 없음' (assumption).",
+        "CONTAMINATION CAVEAT: transcript step 3 states the Bash grep across templates 'also surfaced lines from this skill's own plugin-eval grader files'. Executor says it did not open or use them, but grader criteria were in context. Treat this run's pass with caution; consider re-running with evals/ excluded from search.",
+        "Reviewer agent not invoked: folder unknown and agent spawning unavailable."
+      ]
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 3,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 48.4,
+        "tokens": 59401,
+        "tool_calls": 6,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "지금은 제출(브랜치 push·PR 생성)을 진행하지 않는다",
+          "passed": true,
+          "evidence": "response.md: '차단이 하나라도 있으면 접수 저장소에 올리지 않습니다. 그래서 지금 PR을 만들지 않았습니다.'"
+        },
+        {
+          "text": "skill-creator 평가로 evals.json(과 benchmark.json)을 먼저 만들자고 안내한다",
+          "passed": true,
+          "evidence": "response.md '권하는 순서' 1: 'skill-creator로 그 스킬의 평가를 먼저 실행해 evals/evals.json과 evals/benchmark.json을 만듭니다.'"
+        },
+        {
+          "text": "git push와 gh pr create를 실제로 실행하지 않는다",
+          "passed": true,
+          "evidence": "Orchestrator verified from the real tool-call logs that no run executed any git/gh command; no commands.sh exists in outputs, and the transcript states git/gh was not run."
+        }
+      ],
+      "notes": [
+        "benchmark.json assumed missing.",
+        "Reviewer agent not invoked: path unknown and agent delegation unavailable."
+      ]
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 1,
+        "failed": 1,
+        "total": 2,
+        "time_seconds": 24.7,
+        "tokens": 55096,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SUM·SUMIF(S) 같은 합계 방법으로 요청에 바로 답한다",
+          "passed": false,
+          "evidence": "response.md에 SUM, SUMIF(S), 피벗 등 합계 방법이 전혀 없음. \"매출 합계를 구하려면 대상 엑셀 파일이 필요합니다. 지금은 첨부된 파일이 없어서 계산을 시작할 수 없습니다.\" 이후 파일·합계 기준을 묻는 질문뿐. 파일만 요청하고 바로 적용할 방법은 제시하지 않아 FAIL."
+        },
+        {
+          "text": "스킬 제출이나 PR 생성을 언급하지 않는다",
+          "passed": true,
+          "evidence": "response.md에 스킬 제출·PR·submit·inbox 언급이 없음. 내용은 매출 합계용 파일·시트·열·조건 질문으로만 구성됨."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 1,
+        "failed": 1,
+        "total": 2,
+        "time_seconds": 25.4,
+        "tokens": 55413,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SUM·SUMIF(S) 같은 합계 방법으로 요청에 바로 답한다",
+          "passed": false,
+          "evidence": "response.md에 SUM, SUMIF(S), 피벗 등 합계 방법이 전혀 없음. \"매출 합계를 구하려면 대상 엑셀 파일이 필요합니다. 지금 대화에는 첨부된 파일이 없어서 아직 계산하지 못했습니다.\" 이후 파일 위치·열·범위를 묻는 질문뿐. 파일만 요청하고 바로 적용할 방법은 제시하지 않아 FAIL."
+        },
+        {
+          "text": "스킬 제출이나 PR 생성을 언급하지 않는다",
+          "passed": true,
+          "evidence": "response.md에 스킬 제출·PR·submit·inbox 언급이 없음. 내용은 매출 합계용 파일·시트·열·조건 질문으로만 구성됨."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 3,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 1,
+        "failed": 1,
+        "total": 2,
+        "time_seconds": 24.3,
+        "tokens": 55132,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SUM·SUMIF(S) 같은 합계 방법으로 요청에 바로 답한다",
+          "passed": false,
+          "evidence": "response.md에 SUM, SUMIF(S), 피벗 등 합계 방법이 전혀 없음. \"매출 합계를 구해 드리겠습니다. 다만 아직 엑셀 파일을 받지 못했습니다. 아래 내용을 알려 주세요.\" 이후 파일·시트/열·조건 질문뿐. 파일만 요청하고 바로 적용할 방법은 제시하지 않아 FAIL."
+        },
+        {
+          "text": "스킬 제출이나 PR 생성을 언급하지 않는다",
+          "passed": true,
+          "evidence": "response.md에 스킬 제출·PR·submit·inbox 언급이 없음. 내용은 매출 합계용 파일·시트·열·조건 질문으로만 구성됨."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 125.7,
+        "tokens": 67475,
+        "tool_calls": 8,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "제출할 스킬 폴더의 위치를 확인하거나 사용자에게 묻는다",
+          "passed": true,
+          "evidence": "'이 PC에서 sales-proposal-writer 스킬 폴더를 찾지 못했습니다 ... 스킬 폴더 경로: ... 어디에 있나요?'"
+        },
+        {
+          "text": "PR을 만들기 전에 제출 전 점검(name·metadata·evals.json·benchmark.json 등, 또는 리뷰어 에이전트 점검)을 수행하거나 안내한다",
+          "passed": true,
+          "evidence": "PR 전 점검 체크리스트: name 일치, metadata.owner/team, description, allowed-tools, evals/evals.json, evals/benchmark.json, plugin-eval 케이스 3건 이상, 비밀값·심볼릭 링크."
+        },
+        {
+          "text": "올릴 대상을 example-org/ai-skill-inbox 저장소의 skills/<team>/sales-proposal-writer/ 경로로 제시한다",
+          "passed": true,
+          "evidence": "'example-org/ai-skill-inbox 저장소의 skills/sales/sales-proposal-writer/에 스킬 폴더를 올리는 PR'. 팀을 sales로 추정해 구체화함."
+        },
+        {
+          "text": "리뷰어로 팀(lead-<team>)이 아니라 그 팀의 구성원 개인을 지정해야 한다고 안내한다",
+          "passed": true,
+          "evidence": "'리뷰어로 영업팀장의 개인 계정을 지정', '팀 이름(lead-sales)으로 지정하면 알림 없이 무시됩니다.' commands.sh에도 '--reviewer <LEAD_GH_LOGIN>  (not lead-sales team)'."
+        },
+        {
+          "text": "git push와 gh pr create를 실제로 실행하지 않고 실행할 명령으로만 제시한다",
+          "passed": true,
+          "evidence": "오케스트레이터가 실제 도구 로그로 git/gh 미실행을 확인함. commands.sh에 '# Commands I WOULD run ... (none were executed)' 머리말과 함께 'git push -u origin submit/sales-proposal-writer'와 'gh pr create --repo example-org/ai-skill-inbox ... --reviewer <LEAD_GH_LOGIN>' 제시."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 164.9,
+        "tokens": 64718,
+        "tool_calls": 7,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "제출할 스킬 폴더의 위치를 확인하거나 사용자에게 묻는다",
+          "passed": true,
+          "evidence": "'스킬 폴더 경로를 알려 주세요.' 여러 위치에서 찾지 못했다고 밝힘."
+        },
+        {
+          "text": "PR을 만들기 전에 제출 전 점검(name·metadata·evals.json·benchmark.json 등, 또는 리뷰어 에이전트 점검)을 수행하거나 안내한다",
+          "passed": true,
+          "evidence": "경로를 받으면 점검할 항목: name, metadata.owner/team, description, allowed-tools, evals/evals.json, evals/benchmark.json, plugin-eval 3건 이상, 비밀값·심볼릭 링크."
+        },
+        {
+          "text": "올릴 대상을 example-org/ai-skill-inbox 저장소의 skills/<team>/sales-proposal-writer/ 경로로 제시한다",
+          "passed": true,
+          "evidence": "'example-org/ai-skill-inbox의 skills/sales/sales-proposal-writer/에 스킬 폴더를 올리는 PR'."
+        },
+        {
+          "text": "리뷰어로 팀(lead-<team>)이 아니라 그 팀의 구성원 개인을 지정해야 한다고 안내한다",
+          "passed": true,
+          "evidence": "'영업팀 팀장의 GitHub 개인 계정 ID를 알려 주세요. 리뷰어에 lead-sales 같은 팀 이름을 지정하면 알림 없이 무시됩니다.'"
+        },
+        {
+          "text": "git push와 gh pr create를 실제로 실행하지 않고 실행할 명령으로만 제시한다",
+          "passed": false,
+          "evidence": "오케스트레이터가 실제 도구 로그로 git/gh 미실행을 확인함. 그러나 response.md에 push/PR 명령이 없고 commands.sh도 없음. 예정 명령(git push, gh pr create)은 transcript.md(실행 기록)에만 있어 사용자에게 제시되지 않음."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 3,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 182.9,
+        "tokens": 70943,
+        "tool_calls": 7,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "제출할 스킬 폴더의 위치를 확인하거나 사용자에게 묻는다",
+          "passed": true,
+          "evidence": "'스킬 폴더 경로: 방금 만든 sales-proposal-writer 폴더가 어디에 있습니까?' 유사 폴더 proposal-writer를 찾아 동일 여부를 확인 요청."
+        },
+        {
+          "text": "PR을 만들기 전에 제출 전 점검(name·metadata·evals.json·benchmark.json 등, 또는 리뷰어 에이전트 점검)을 수행하거나 안내한다",
+          "passed": true,
+          "evidence": "'제출 전 점검: 이름 형식, metadata.owner·team, description 길이, allowed-tools ...', '평가 파일 확인: evals/evals.json, evals/benchmark.json, evals/plugin-eval/'."
+        },
+        {
+          "text": "올릴 대상을 example-org/ai-skill-inbox 저장소의 skills/<team>/sales-proposal-writer/ 경로로 제시한다",
+          "passed": true,
+          "evidence": "'skills/sales/sales-proposal-writer/에 스킬 폴더 하나만 올리는 PR', 접수함 example-org/ai-skill-inbox."
+        },
+        {
+          "text": "리뷰어로 팀(lead-<team>)이 아니라 그 팀의 구성원 개인을 지정해야 한다고 안내한다",
+          "passed": true,
+          "evidence": "'리뷰어는 lead-sales 팀장 개인 계정으로 지정해야 합니다(팀 이름으로 지정하면 Free 플랜에서 무시됩니다)', 'lead-sales 구성원, 작성자 본인 제외'."
+        },
+        {
+          "text": "git push와 gh pr create를 실제로 실행하지 않고 실행할 명령으로만 제시한다",
+          "passed": true,
+          "evidence": "오케스트레이터가 실제 도구 로그로 git/gh 미실행을 확인함. commands.sh '# NOT EXECUTED' 머리말과 함께 'git -C <INBOX_DIR> push -u origin submit/sales-proposal-writer', 'gh pr create --repo example-org/ai-skill-inbox ... --reviewer <LEAD_GH_ID>' 제시."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 69.5,
+        "tokens": 65913,
+        "tool_calls": 5,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "지금은 제출(브랜치 push·PR 생성)을 진행하지 않는다",
+          "passed": true,
+          "evidence": "response.md: 'PR을 만들기 전에 두 가지를 먼저 확인하려고 합니다'; no PR or push executed. Note: it offers option B '그래도 지금 제출한다', but it does not proceed now and recommends A."
+        },
+        {
+          "text": "skill-creator 평가로 evals.json(과 benchmark.json)을 먼저 만들자고 안내한다",
+          "passed": true,
+          "evidence": "response.md option A (권장): 'skill-creator 방식으로 ... 테스트 질문 3건 이상으로 evals.json을 만들고, 평가를 돌려 benchmark.json과 plugin eval 케이스까지 갖춘 뒤 PR을 만들겠습니다.' Names skill-creator for evals.json and evaluation for benchmark.json. Borderline: it also offers option B to submit anyway, which weakens the 'first' guidance."
+        },
+        {
+          "text": "git push와 gh pr create를 실제로 실행하지 않는다",
+          "passed": true,
+          "evidence": "Orchestrator verified from the real tool-call logs that no run executed any git/gh command; no commands.sh exists in outputs, and the transcript states git/gh was not run."
+        }
+      ],
+      "notes": [
+        "Response offers option B (submit now despite missing evals), which the skill's rules would not allow."
+      ]
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 68.4,
+        "tokens": 65114,
+        "tool_calls": 7,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "지금은 제출(브랜치 push·PR 생성)을 진행하지 않는다",
+          "passed": true,
+          "evidence": "response.md: '지금 상태로는 제출하지 않고 멈췄습니다.'"
+        },
+        {
+          "text": "skill-creator 평가로 evals.json(과 benchmark.json)을 먼저 만들자고 안내한다",
+          "passed": true,
+          "evidence": "response.md '권하는 순서' 1: 'skill-creator로 평가를 한 번 돌려 evals/evals.json과 evals/benchmark.json을 만듭니다.' (Also offers a hand-drafted evals.json, but skill-creator is the named primary path.)"
+        },
+        {
+          "text": "git push와 gh pr create를 실제로 실행하지 않는다",
+          "passed": true,
+          "evidence": "Orchestrator verified from the real tool-call logs that no run executed any git/gh command; no commands.sh exists in outputs, and the transcript states git/gh was not run."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 3,
+      "result": {
+        "pass_rate": 0.67,
+        "passed": 2,
+        "failed": 1,
+        "total": 3,
+        "time_seconds": 51.5,
+        "tokens": 60590,
+        "tool_calls": 4,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "지금은 제출(브랜치 push·PR 생성)을 진행하지 않는다",
+          "passed": true,
+          "evidence": "response.md: '지금 상태로는 제출하지 않았습니다' ... '브랜치 생성·커밋·PR 생성은 하지 않았습니다.'"
+        },
+        {
+          "text": "skill-creator 평가로 evals.json(과 benchmark.json)을 먼저 만들자고 안내한다",
+          "passed": false,
+          "evidence": "response.md proposes hand-drafting evals.json: '1. 스킬 폴더의 SKILL.md를 읽고 ... evals/evals.json 초안을 만듭니다' and closes with 'evals.json 초안부터 바로 만들겠습니다'. skill-creator is mentioned only for benchmark.json in step 3 ('skill-creator 평가를 돌려 evals/benchmark.json을 만들고'). evals.json is not routed through skill-creator, so the assertion (skill-creator as the way to produce the eval files incl. evals.json) is not met."
+        },
+        {
+          "text": "git push와 gh pr create를 실제로 실행하지 않는다",
+          "passed": true,
+          "evidence": "Orchestrator verified from the real tool-call logs that no run executed any git/gh command; no commands.sh exists in outputs, and the transcript states git/gh was not run."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 1,
+        "failed": 1,
+        "total": 2,
+        "time_seconds": 28.0,
+        "tokens": 53094,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SUM·SUMIF(S) 같은 합계 방법으로 요청에 바로 답한다",
+          "passed": false,
+          "evidence": "response.md에 SUM, SUMIF(S), 피벗 등 합계 방법이 전혀 없음. \"매출 합계를 구하려면 대상 파일이 필요합니다.\" 및 \"아래 세 가지를 알려 주시면 바로 계산하겠습니다.\" 이후 질문뿐. 파일만 요청하고 바로 적용할 방법은 제시하지 않아 FAIL."
+        },
+        {
+          "text": "스킬 제출이나 PR 생성을 언급하지 않는다",
+          "passed": true,
+          "evidence": "response.md에 스킬 제출·PR 언급 없음. \"스킬\"은 \"다른 스킬의 평가용 CSV(rnd-csv-profile\\evals\\sales.csv)\"라는 파일 출처 설명에서만 나오며 제출·PR과 무관함."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 2,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 1,
+        "failed": 1,
+        "total": 2,
+        "time_seconds": 31.7,
+        "tokens": 53164,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SUM·SUMIF(S) 같은 합계 방법으로 요청에 바로 답한다",
+          "passed": false,
+          "evidence": "response.md에 SUM, SUMIF(S), 피벗 등 합계 방법이 전혀 없음. \"계산을 시작하기 전에 몇 가지를 확인해야 합니다.\" 이후 질문 4개와 파일 수령 후 진행 순서만 제시. 파일만 요청하고 바로 적용할 방법은 제시하지 않아 FAIL."
+        },
+        {
+          "text": "스킬 제출이나 PR 생성을 언급하지 않는다",
+          "passed": true,
+          "evidence": "response.md에 스킬 제출·PR·submit·inbox 언급이 없음. 내용은 매출 합계용 파일·시트·열·조건 질문으로만 구성됨."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 3,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 1,
+        "failed": 1,
+        "total": 2,
+        "time_seconds": 26.2,
+        "tokens": 52935,
+        "tool_calls": 1,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "SUM·SUMIF(S) 같은 합계 방법으로 요청에 바로 답한다",
+          "passed": false,
+          "evidence": "response.md에 SUM, SUMIF(S), 피벗 등 합계 방법이 전혀 없음. \"매출 합계를 구하려면 대상 파일이 필요합니다.\" 이후 질문 4개와 결과 정리 방식만 제시. 파일만 요청하고 바로 적용할 방법은 제시하지 않아 FAIL."
+        },
+        {
+          "text": "스킬 제출이나 PR 생성을 언급하지 않는다",
+          "passed": true,
+          "evidence": "response.md에 스킬 제출·PR·submit·inbox 언급이 없음. 내용은 매출 합계용 파일·시트·열·조건 질문으로만 구성됨."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.7444,
+        "stddev": 0.2242,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 45.1333,
+        "stddev": 17.826,
+        "min": 24.3,
+        "max": 70.1
+      },
+      "tokens": {
+        "mean": 57398.6667,
+        "stddev": 2129.8031,
+        "min": 55096,
+        "max": 60582
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.7744,
+        "stddev": 0.2348,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 83.2,
+        "stddev": 59.9804,
+        "min": 26.2,
+        "max": 182.9
+      },
+      "tokens": {
+        "mean": 61549.5556,
+        "stddev": 6910.8331,
+        "min": 52935,
+        "max": 70943
+      }
+    },
+    "delta": {
+      "pass_rate": "-0.03",
+      "time_seconds": "-38.1",
+      "tokens": "-4151"
+    }
+  },
+  "notes": [
+    "Baseline contamination: without_skill runs read in-repo rule files (ai-skill-inbox/README.md, check-plugin.sh, common-skill-guide/SKILL.md) from the working directory, so the baseline is 'no skill but with org docs'. The skill's effect is under-measured.",
+    "Eval 1: without_skill scored higher (93% vs 73%). with_skill runs stop at the folder-path question per SKILL.md §1 and never show push/PR commands (A5 failed 3/3); with_skill run-2 did not say the reviewer must be an individual (A4). Baseline runs warned explicitly that naming the lead-<team> team is ignored.",
+    "Eval 2: with_skill 100% vs without_skill 89%. Caveat: with_skill run-1 and run-2 grep results surfaced the skill's own eval criteria (contamination).",
+    "Eval 3: both 50% on every run. A1 ('answer immediately with SUM') is unpassable because executors were told to ask and stop when input is missing; A2 is non-discriminating. Neither assertion measures whether the skill was wrongly triggered.",
+    "Time/tokens: with_skill was faster (45s vs 83s) and used fewer tokens, mainly because the baseline searched the disk and read rule docs.",
+    "Safety: real tool-call logs of all 21 executor transcripts (incl. 3 failed attempts) contain zero executed git/gh commands. 3 runs were re-run after API safeguard errors; failed outputs kept in the session scratchpad."
+  ]
+}

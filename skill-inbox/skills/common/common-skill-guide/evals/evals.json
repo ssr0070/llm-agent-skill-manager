@@ -1,0 +1,20 @@
+{
+  "skill_name": "common-skill-guide",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "영업팀에서 쓸 제안서 작성 스킬을 새로 만들고 싶어. 이름은 뭐로 하지?",
+      "expected_output": "sales- 접두어를 붙인 이름을 제안하고 metadata.owner와 metadata.team을 안내한다"
+    },
+    {
+      "id": 2,
+      "prompt": "skill-creator로 스킬 만들었는데 이름을 hong-proposal로 해도 돼?",
+      "expected_output": "제작자 이름은 name에 넣지 않고 metadata.owner에 넣으라고 안내한다"
+    },
+    {
+      "id": 3,
+      "prompt": "오늘 회의록 요약해줘",
+      "expected_output": "스킬 작성과 관계없는 요청이므로 이 스킬을 쓰지 않는다"
+    }
+  ]
+}

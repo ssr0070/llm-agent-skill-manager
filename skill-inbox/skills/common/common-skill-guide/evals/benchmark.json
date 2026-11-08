@@ -1,0 +1,253 @@
+{
+  "metadata": {
+    "skill_name": "common-skill-guide",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-10-15T11:16:40Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 18.3,
+        "tokens": 75921,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\ucd94\ucc9c \uc774\ub984\uc774 sales- \uc811\ub450\uc5b4\ub85c \uc2dc\uc791\ud55c\ub2e4",
+          "passed": true,
+          "evidence": "\ucd94\ucc9c \uc774\ub984 sales-proposal-writer"
+        },
+        {
+          "text": "metadata.owner\ub97c \uc548\ub0b4\ud55c\ub2e4",
+          "passed": true,
+          "evidence": "\ub2f5\ubcc0\uc5d0 `owner` \ud45c\ud604\uc774 \uc788\uc74c"
+        },
+        {
+          "text": "metadata.team\uc744 \uc548\ub0b4\ud55c\ub2e4",
+          "passed": true,
+          "evidence": "\ub2f5\ubcc0\uc5d0 `team` \ud45c\ud604\uc774 \uc788\uc74c"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 14.9,
+        "tokens": 75591,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "hong-proposal\uc744 \uadf8\ub300\ub85c \uc4f0\uba74 \uc548 \ub41c\ub2e4\uace0 \ud310\uc815\ud55c\ub2e4",
+          "passed": true,
+          "evidence": "\uc81c\ucd9c \ubd88\uac00\u00b7\ubc18\ub824\ub97c \uba85\uc2dc"
+        },
+        {
+          "text": "\uc81c\uc791\uc790 \uc774\ub984\uc740 metadata.owner\uc5d0 \ub123\uc73c\ub77c\uace0 \uc548\ub0b4\ud55c\ub2e4",
+          "passed": true,
+          "evidence": "\ub2f5\ubcc0\uc5d0 `owner` \ud45c\ud604\uc774 \uc788\uc74c"
+        },
+        {
+          "text": "\ud300 \uc811\ub450\uc5b4(sales- \ub4f1)\ub97c \ubd99\uc778 \ub300\uc548\uc744 \uc81c\uc2dc\ud55c\ub2e4",
+          "passed": true,
+          "evidence": "\ud300 \uc811\ub450\uc5b4 \ub300\uc548 \uc788\uc74c"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 2,
+        "failed": 0,
+        "total": 2,
+        "time_seconds": 13.3,
+        "tokens": 75280,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\uc2a4\ud0ac \uc791\uc131 \uaddc\uce59\uc744 \uc5b8\uae09\ud558\uc9c0 \uc54a\ub294\ub2e4",
+          "passed": true,
+          "evidence": "\uc2a4\ud0ac \uaddc\uce59 \uc5b8\uae09 \uc5c6\uc74c"
+        },
+        {
+          "text": "\ud68c\uc758\ub85d \uc6d0\ubb38\uc744 \uc694\uccad\ud558\uac70\ub098 \uc694\uc57d\uc744 \uc2dc\ub3c4\ud55c\ub2e4",
+          "passed": true,
+          "evidence": "\uc6d0\ubb38 \uc81c\uacf5 \ubc29\ubc95\uc744 \uc548\ub0b4"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "passed": 0,
+        "failed": 3,
+        "total": 3,
+        "time_seconds": 19.2,
+        "tokens": 71444,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\ucd94\ucc9c \uc774\ub984\uc774 sales- \uc811\ub450\uc5b4\ub85c \uc2dc\uc791\ud55c\ub2e4",
+          "passed": false,
+          "evidence": "\ucd94\ucc9c \uc774\ub984 example-sales-proposal"
+        },
+        {
+          "text": "metadata.owner\ub97c \uc548\ub0b4\ud55c\ub2e4",
+          "passed": false,
+          "evidence": "\ub2f5\ubcc0\uc5d0 `owner` \ud45c\ud604\uc774 \uc5c6\uc74c"
+        },
+        {
+          "text": "metadata.team\uc744 \uc548\ub0b4\ud55c\ub2e4",
+          "passed": false,
+          "evidence": "\ub2f5\ubcc0\uc5d0 `team` \ud45c\ud604\uc774 \uc5c6\uc74c"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "passed": 0,
+        "failed": 3,
+        "total": 3,
+        "time_seconds": 16.3,
+        "tokens": 71123,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "hong-proposal\uc744 \uadf8\ub300\ub85c \uc4f0\uba74 \uc548 \ub41c\ub2e4\uace0 \ud310\uc815\ud55c\ub2e4",
+          "passed": false,
+          "evidence": "\ud615\uc2dd\uc0c1 \uc4f8 \uc218 \uc788\ub2e4\uace0 \ub2f5\ud568(\uad8c\uc7a5\ud558\uc9c0 \uc54a\uc74c \uc218\uc900)"
+        },
+        {
+          "text": "\uc81c\uc791\uc790 \uc774\ub984\uc740 metadata.owner\uc5d0 \ub123\uc73c\ub77c\uace0 \uc548\ub0b4\ud55c\ub2e4",
+          "passed": false,
+          "evidence": "\ub2f5\ubcc0\uc5d0 `owner` \ud45c\ud604\uc774 \uc5c6\uc74c"
+        },
+        {
+          "text": "\ud300 \uc811\ub450\uc5b4(sales- \ub4f1)\ub97c \ubd99\uc778 \ub300\uc548\uc744 \uc81c\uc2dc\ud55c\ub2e4",
+          "passed": false,
+          "evidence": "\ud300 \uc811\ub450\uc5b4 \uc5c6\ub294 \ub300\uc548\ub9cc \uc81c\uc2dc"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 2,
+        "failed": 0,
+        "total": 2,
+        "time_seconds": 18.7,
+        "tokens": 81601,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\uc2a4\ud0ac \uc791\uc131 \uaddc\uce59\uc744 \uc5b8\uae09\ud558\uc9c0 \uc54a\ub294\ub2e4",
+          "passed": true,
+          "evidence": "\uc2a4\ud0ac \uaddc\uce59 \uc5b8\uae09 \uc5c6\uc74c"
+        },
+        {
+          "text": "\ud68c\uc758\ub85d \uc6d0\ubb38\uc744 \uc694\uccad\ud558\uac70\ub098 \uc694\uc57d\uc744 \uc2dc\ub3c4\ud55c\ub2e4",
+          "passed": true,
+          "evidence": "\uc6d0\ubb38 \uc81c\uacf5 \ubc29\ubc95\uc744 \uc548\ub0b4"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 15.5,
+        "stddev": 2.5534,
+        "min": 13.3,
+        "max": 18.3
+      },
+      "tokens": {
+        "mean": 75597.3333,
+        "stddev": 320.5469,
+        "min": 75280,
+        "max": 75921
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.3333,
+        "stddev": 0.5774,
+        "min": 0.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 18.0667,
+        "stddev": 1.5503,
+        "min": 16.3,
+        "max": 19.2
+      },
+      "tokens": {
+        "mean": 74722.6667,
+        "stddev": 5958.9733,
+        "min": 71123,
+        "max": 81601
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.67",
+      "time_seconds": "-2.6",
+      "tokens": "+875"
+    }
+  },
+  "notes": []
+}

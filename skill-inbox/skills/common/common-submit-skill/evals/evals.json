@@ -1,0 +1,36 @@
+{
+  "skill_name": "common-submit-skill",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "방금 만든 sales-proposal-writer 스킬을 회사에 배포 신청하고 싶어요",
+      "expected_output": "제출 전 확인 항목을 점검하고, ai-skill-inbox의 skills/sales/sales-proposal-writer/에 올리는 PR을 만들고 팀장 팀(lead-sales)에게 리뷰를 요청하는 절차를 진행한다",
+      "assertions": [
+        "제출할 스킬 폴더의 위치를 확인하거나 사용자에게 묻는다",
+        "PR을 만들기 전에 제출 전 점검(name·metadata·evals.json·benchmark.json 등, 또는 리뷰어 에이전트 점검)을 수행하거나 안내한다",
+        "올릴 대상을 example-org/ai-skill-inbox 저장소의 skills/<team>/sales-proposal-writer/ 경로로 제시한다",
+        "PR에 리뷰어를 직접 지정하지 않고, 재검사를 통과하면 팀장에게 리뷰 요청이 자동으로 간다고 안내한다",
+        "git push와 gh pr create를 실제로 실행하지 않고 실행할 명령으로만 제시한다"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "이 스킬 폴더 제출해줘. 근데 evals.json은 아직 안 만들었어",
+      "expected_output": "올리지 않고 skill-creator 평가로 테스트 질문을 먼저 만들자고 안내한다",
+      "assertions": [
+        "지금은 제출(브랜치 push·PR 생성)을 진행하지 않는다",
+        "skill-creator 평가로 evals.json(과 benchmark.json)을 먼저 만들자고 안내한다",
+        "git push와 gh pr create를 실제로 실행하지 않는다"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "엑셀 파일에서 매출 합계 좀 구해줘",
+      "expected_output": "스킬 제출과 관계없는 요청이므로 이 스킬을 쓰지 않는다",
+      "assertions": [
+        "SUM·SUMIF(S) 같은 합계 방법으로 요청에 바로 답한다",
+        "스킬 제출이나 PR 생성을 언급하지 않는다"
+      ]
+    }
+  ]
+}
